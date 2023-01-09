@@ -1,3 +1,7 @@
+DEPARTEMENT OF INFORMATION TECHNOLOGY and other magics
+===
+![Book cover](https://github.com/tayyebi/devops-book/raw/main/cover.png)
+
 # Development Machines
 
 
