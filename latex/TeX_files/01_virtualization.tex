@@ -1,2 +1,55 @@
 \chapter{Virtualization}
 
+
+\section{Docker}
+
+\subsection{Installation}
+
+\paragraph{Prerequisites}
+
+\begin{verbatim}
+sudo apt update
+
+sudo apt install \
+ca-certificates \
+curl \
+gnupg \
+lsb-release
+\end{verbatim}
+
+\paragraph{Add official Docker's GPG key}
+
+\begin{verbatim}
+echo \
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+\end{verbatim}
+
+\paragraph{Install Docker engine}
+
+\begin{verbatim}
+sudo apt update --allow-insecure-repositories
+sudo apt --allow-unauthenticated -- install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+\end{verbatim}
+
+\paragraph{Receiving a GPG error when running `apt update`?}
+
+Your default umask may not be set correctly, causing the public key file for the repo to not be detected. Run the following command and then try to update your repo again: `sudo chmod a+r /etc/apt/keyrings/docker.gpg`.
+
+\paragraph{Verify installation}
+
+\begin{verbatim}
+sudo docker run hello-world
+\end{verbatim}
+
+\paragraph{Docker Security}
+
+\subparagraph{Run `docker` without `sudo`}
+
+\begin{verbatim}
+sudo groupadd docker
+sudo usermod -a -G docker $USER
+groups
+grep docker /etc/group
+newgrp docker
+\end{verbatim}
